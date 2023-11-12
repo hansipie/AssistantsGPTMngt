@@ -30,7 +30,7 @@ df_assist['created_at'] = pd.to_datetime(df_assist['created_at'], unit='s')
 df_assist['selected'] = False
 
 # show the dataframe
-edited_df = st.data_editor(df_assist[['selected', 'name', 'description', 'created_at', 'id', 'file_ids']], column_config={
+edited_df = st.data_editor(df_assist[['selected', 'name', 'created_at', 'id', 'file_ids']], column_config={
         "selected": st.column_config.CheckboxColumn(
             "Select",
             help="Select assistant for deletion",
@@ -52,4 +52,3 @@ if (st.button('Delete selected assistants')):
             response_delassist = client.beta.assistants.delete(row['id'])
             print("delete assistant:", response_delassist)
     st.rerun()
-    
