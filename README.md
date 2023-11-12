@@ -1,8 +1,8 @@
 <div align="center">
 <h1 align="center">
 <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
-<br>ASSISTANTSGPTMNGT</h1>
-<h3>◦ GPT + GitHub: Unleash Assistant Power</h3>
+<br>AssistantsGPTMngt</h1>
+<h3>◦ Gain control on your assistants</h3>
 <h3>◦ Developed with the software and tools below.</h3>
 
 <p align="center">
@@ -27,7 +27,6 @@
 - [🚀 Getting Started](#-getting-started)
     - [🔧 Installation](#-installation)
     - [🤖 Running AssistantsGPTMngt](#-running-AssistantsGPTMngt)
-    - [🧪 Tests](#-tests)
 - [🛣 Roadmap](#-roadmap)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -91,11 +90,11 @@ AssistantsGPTMngt is a code repository containing an Assistants Management appli
 
 Please ensure you have the following dependencies installed on your system:
 
-`- ℹ️ Dependency 1`
+`- ℹ️ python 3.10`
 
-`- ℹ️ Dependency 2`
+`- ℹ️ python module: streamlit`
 
-`- ℹ️ ...`
+`- ℹ️ python module: openai`
 
 ### 🔧 Installation
 
@@ -111,18 +110,13 @@ cd AssistantsGPTMngt
 
 3. Install the dependencies:
 ```sh
-► INSERT-TEXT
+► pip install -r requirements.txt
 ```
 
 ### 🤖 Running AssistantsGPTMngt
 
 ```sh
-► INSERT-TEXT
-```
-
-### 🧪 Tests
-```sh
-► INSERT-TEXT
+► python app.py
 ```
 
 ---
@@ -179,7 +173,7 @@ Once your PR is reviewed and approved, it will be merged into the main branch.
 ## 📄 License
 
 
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+This project is protected under the MIT License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
 ---
 
