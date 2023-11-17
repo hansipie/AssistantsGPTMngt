@@ -61,11 +61,13 @@ if (st.button('Delete selected assistants')):
         print(row['selected'], row['name'], row['id'])
         if row['selected']:
             for file_id in row['file_ids']:
-                #response_delfiles = client.beta.assistants.files.delete(assistant_id=row['id'], file_id=file_id) # not working
-                response_delfiles = client.files.delete(file_id)
-                print("delete file:", response_delfiles)
-                # print type of json variable
-                toastMessage(response_delfiles)
+                try:
+                    response_delfiles = client.files.delete(file_id)
+                    print("delete file:", response_delfiles)
+                    # print type of json variable
+                    toastMessage(response_delfiles)
+                except (Exception) as e:
+                    print("delete file failed:", e)
             response_delassist = client.beta.assistants.delete(row['id'])
             print("delete assistant:", response_delassist)
             toastMessage(response_delassist)
@@ -98,7 +100,10 @@ if (st.button('Delete selected files')):
     for index, row in edited_df_file.iterrows():
         print(row['selected'], row['filename'], row['id'])
         if row['selected']:
-            response_delfile = client.files.delete(row['id'])
-            print("delete file:", response_delfile)
-            toastMessage(response_delfile)
+            try:
+                response_delfile = client.files.delete(row['id'])
+                print("delete file:", response_delfile)
+                toastMessage(response_delfile)
+            except (Exception) as e:
+                print("delete file failed:", e)
     st.rerun()
