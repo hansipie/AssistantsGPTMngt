@@ -100,15 +100,20 @@ Please ensure you have the following dependencies installed on your system:
 
 1. Clone the AssistantsGPTMngt repository:
 ```sh
-git clone https://github.com/hansipie/AssistantsGPTMngt
+► git clone https://github.com/hansipie/AssistantsGPTMngt
 ```
 
 2. Change to the project directory:
 ```sh
-cd AssistantsGPTMngt
+► cd AssistantsGPTMngt
 ```
 
-3. Install the dependencies:
+3. Create the secret file containing your OpenAI API key:
+```sh
+► echo "OPENAI_API_KEY = \"sk-******\"" >> .streamlit/secrets.toml
+```
+
+4. Install the dependencies:
 ```sh
 ► pip install -r requirements.txt
 ```
@@ -116,7 +121,7 @@ cd AssistantsGPTMngt
 ### 🤖 Running AssistantsGPTMngt
 
 ```sh
-► python app.py
+► streamlit run app.py
 ```
 
 ---
