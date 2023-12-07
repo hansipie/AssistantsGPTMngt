@@ -108,10 +108,23 @@ Please ensure you have the following dependencies installed on your system:
 ► cd AssistantsGPTMngt
 ```
 
-3. Create the secret file containing your OpenAI API key:
+3. Create the secret file containing your OpenAI API key (optionnal)
 ```sh
 ► echo "OPENAI_API_KEY = \"sk-******\"" >> .streamlit/secrets.toml
 ```
+> [!NOTE]
+> - NB: This simply set the environment variable at streamlit's runtime. It the API key is not provided as described here, the environment variable will have to be set manually:
+>
+>   On `Linux/MacOS`
+>   ```bash
+>   export OPENAI_API_KEY=YOUR_API_KEY
+>   ```
+>   On `Windows`
+>   ```bash
+>   set OPENAI_API_KEY=YOUR_API_KEY
+>   ```
+> 
+> - NB2: If the API key is not provided in the environment it will have to be set in the UI
 
 4. Install the dependencies:
 ```sh
@@ -120,9 +133,26 @@ Please ensure you have the following dependencies installed on your system:
 
 ### 🤖 Running AssistantsGPTMngt
 
+From `CLI`
+
 ```sh
 ► streamlit run app.py
 ```
+
+Using `Docker`
+```sh
+► docker compose up
+```
+
+Using `Streamlit`
+
+Try <em>AssistantGPTMngt</em> in your browser, no installation required!
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://assistantsgptmngt.streamlit.app/)
+
+> [!NOTE]
+>
+> Hosted on Streamlit's Community Cloud. It may be unstable or unavailable at times.
 
 ---
 
