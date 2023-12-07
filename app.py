@@ -32,7 +32,11 @@ def toastMessage(message):
 
 ### Assistants ###
 
-my_assistants = client.beta.assistants.list()
+try:
+    my_assistants = client.beta.assistants.list()
+except (Exception) as e:   
+    st.warning(e.message)
+    st.stop()
 
 # make a dataframe from the assistants
 df_assist = pd.DataFrame(my_assistants.data, columns=['id', 'created_at', 'description', 'file_ids', 'instructions', 'metadata', 'model', 'name', 'object', 'tools'])
