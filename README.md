@@ -27,7 +27,6 @@
 - [🚀 Getting Started](#-getting-started)
     - [🔧 Installation](#-installation)
     - [🤖 Running AssistantsGPTMngt](#-running-AssistantsGPTMngt)
-- [🛣 Roadmap](#-roadmap)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [👏 Acknowledgments](#-acknowledgments)
@@ -156,15 +155,6 @@ Try <em>AssistantGPTMngt</em> in your browser, no installation required!
 
 ---
 
-
-## 🛣 Project Roadmap
-
-> - [X] `ℹ️  Task 1: Implement X`
-> - [ ] `ℹ️  Task 2: Implement Y`
-> - [ ] `ℹ️ ...`
-
-
----
 
 ## 🤝 Contributing
 
