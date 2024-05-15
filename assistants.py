@@ -151,7 +151,7 @@ st.set_page_config(layout="wide")
 st.title("Assistants Management")
 
 if "openai_api_key" not in st.session_state:
-    st.session_state.openai_api_key = None
+    st.session_state.openai_api_key = ""
 if "client" not in st.session_state:
     st.session_state.client = None
 if "idUseCounts" not in st.session_state:
@@ -164,7 +164,7 @@ with st.sidebar:
     else:
         print("Using OpenAI API key from user input")
         st.session_state.openai_api_key = st.text_input(
-            "OpenAI API Key", key="open_api_key", type="password"
+            "OpenAI API Key", value=st.session_state.openai_api_key , key="open_api_key", type="password", 
         )
     if st.button("Reload"):
         st.rerun()
