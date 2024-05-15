@@ -44,10 +44,10 @@ AssistantsGPTMngt is a code repository containing an Assistants Management appli
 
 |    | Feature            | Description                                                                                                        |
 |----|--------------------|--------------------------------------------------------------------------------------------------------------------|
-| ⚙️ | **Architecture**   | The codebase follows a simple architecture with a single file, app.py, which serves as the main entry point for the application. It uses the Streamlit library to create a web-based interface. The codebase implements a basic client-server architecture, where the user interacts with the application through the web interface served by Streamlit, and the server-side logic is handled by the code in app.py. |
-| 📄 | **Documentation**  | The codebase is lacking comprehensive documentation. Although there are code summaries for the app.py and requirements.txt files, there is no separate documentation file or detailed comments within the codebase. Adding more detailed explanations, function and class-level comments, and a separate README file would greatly improve the comprehensiveness of the documentation. |
+| ⚙️ | **Architecture**   | The codebase follows a simple architecture with a single file, assistants.py, which serves as the main entry point for the application. It uses the Streamlit library to create a web-based interface. The codebase implements a basic client-server architecture, where the user interacts with the application through the web interface served by Streamlit, and the server-side logic is handled by the code in assistants.py. |
+| 📄 | **Documentation**  | The codebase is lacking comprehensive documentation. Although there are code summaries for the assistants.py and requirements.txt files, there is no separate documentation file or detailed comments within the codebase. Adding more detailed explanations, function and class-level comments, and a separate README file would greatly improve the comprehensiveness of the documentation. |
 | 🔗 | **Dependencies**   | The codebase has a few external dependencies, including the Python programming language itself, as well as the Streamlit, streamlit-file-browser, and openai libraries. The requirements.txt file specifies these dependencies and can be used to easily install all the required libraries for running the application. |
-| 🧩 | **Modularity**     | The codebase is organized into a single file, app.py, which contains all the logic for the application. However, the code can be further modularized by separating different functionalities into separate modules or classes. This would improve code maintainability and reusability. |
+| 🧩 | **Modularity**     | The codebase is organized into a single file, assistants.py, which contains all the logic for the application. However, the code can be further modularized by separating different functionalities into separate modules or classes. This would improve code maintainability and reusability. |
 | 🧪 | **Testing**        | The codebase does not have any explicit testing strategies or tools implemented. Adding unit tests, integration tests, and possibly automated testing tools like pytest or unittest would greatly improve the overall quality and robustness of the codebase. |
 | ⚡️  | **Performance**    | The performance of the system depends on the efficiency of the Streamlit framework and the response times of the OpenAI API. The codebase itself does not have any specific performance optimizations. Considering the code's simplicity and the fact that it primarily relies on external services, the performance should be sufficient for its intended use. |
 | 🔐 | **Security**       | The codebase does not implement any specific measures to protect data or ensure security. It relies on the user to input their OpenAI API key, and there is a warning message if the key is not provided. However, implementing authentication, encryption, and other security measures would be essential if the codebase were to be deployed in a production environment. |
@@ -62,7 +62,9 @@ AssistantsGPTMngt is a code repository containing an Assistants Management appli
 
 ```sh
 └── AssistantsGPTMngt/
-    ├── app.py
+    ├── pages/
+    |   └── orphans.py
+    ├── assistant.py
     └── requirements.txt
 
 ```
@@ -77,7 +79,7 @@ AssistantsGPTMngt is a code repository containing an Assistants Management appli
 | File                                                                                         | Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ---                                                                                          | ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | [requirements.txt](https://github.com/hansipie/AssistantsGPTMngt/blob/main/requirements.txt) | The code in the "requirements.txt" file specifies the dependencies needed for the app in the AssistantsGPTMngt directory to run. These dependencies include "streamlit," "streamlit-file-browser," and "openai.                                                                                                                                                                                                                                                                                                                                    |
-| [app.py](https://github.com/hansipie/AssistantsGPTMngt/blob/main/app.py)                     | The code above is for an Assistants Management application. It uses the Streamlit library to create a web-based interface. It allows the user to input their OpenAI API key and provides a sidebar with a reload button. If the API key is not provided, a warning message is displayed and the program stops. It then uses the OpenAI library to retrieve a list of existing assistants and displays them in a tabular format. The user can select assistants for deletion using checkboxes and click a button to delete the selected assistants. |
+| [assistants.py](https://github.com/hansipie/AssistantsGPTMngt/blob/main/assistants.py)                     | The code above is for an Assistants Management application. It uses the Streamlit library to create a web-based interface. It allows the user to input their OpenAI API key and provides a sidebar with a reload button. If the API key is not provided, a warning message is displayed and the program stops. It then uses the OpenAI library to retrieve a list of existing assistants and displays them in a tabular format. The user can select assistants for deletion using checkboxes and click a button to delete the selected assistants. |
 
 </details>
 
@@ -135,7 +137,7 @@ Please ensure you have the following dependencies installed on your system:
 From `CLI`
 
 ```sh
-► streamlit run app.py
+► streamlit run assistants.py
 ```
 
 Using `Docker`
