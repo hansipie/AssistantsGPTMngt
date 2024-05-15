@@ -36,18 +36,22 @@ class Assistant:
     tools: List[Tool]
     tool_resources: ToolResources
 
+
 def toastMessage(message):
     if message.deleted:
-        st.toast(f"Delete {message.object} {message.id}")  
+        st.toast(f"Delete {message.object} {message.id}")
     else:
         st.toast(f"Error: delete {message.object} {message.id} failed")
+
 
 def listAssistants():
     try:
         response = st.session_state.client.beta.assistants.list()
         return response
     except Exception as e:
+        print(e)
         return e
+
 
 def deleteAssistant(assistant_id):
     try:
@@ -56,12 +60,14 @@ def deleteAssistant(assistant_id):
     except Exception as e:
         return e
 
+
 def deleteFile(file_id):
     try:
         response = st.session_state.client.files.delete(file_id)
         return response
     except Exception as e:
         return e
+
 
 def deleteVectorStore(vector_store_id):
     try:
@@ -70,11 +76,13 @@ def deleteVectorStore(vector_store_id):
     except Exception as e:
         return e
 
+
 def updateIdUseCounts(id):
     if id not in st.session_state.idUseCounts:
         st.session_state.idUseCounts[id] = 1
     else:
         st.session_state.idUseCounts[id] += 1
+
 
 def getFileDetails(file_id, vector_store_id=None):
     file_details = st.session_state.client.files.retrieve(file_id)
@@ -145,7 +153,7 @@ st.title("Assistants Management")
 if "openai_api_key" not in st.session_state:
     st.session_state.openai_api_key = None
 if "client" not in st.session_state:
-    st.session_state.client = OpenAI(api_key=st.session_state.openai_api_key)
+    st.session_state.client = None
 if "idUseCounts" not in st.session_state:
     st.session_state.idUseCounts = {}
 
@@ -165,10 +173,14 @@ if not st.session_state.openai_api_key:
     st.warning("Please provide your OpenAI API key")
     st.stop()
 
+st.session_state.client = OpenAI(api_key=st.session_state.openai_api_key)
+
 ### Assistants ###
 
 with st.spinner("Loading assistants..."):
     my_assistants = listAssistants()
+    print("ici ")
+    print(my_assistants)
     data = setData(my_assistants.data)
 
 # with st.spinner("Loading files and vector stores..."):
@@ -183,7 +195,12 @@ for assistant in data:
             with st.container(border=True):
                 st.write("**Assistant Name**: ", assistant.name)
                 st.write(" - ID: ", assistant.id)
-                st.button("Delete", on_click=deleteAssistant, args=[assistant.id], key=assistant.id)
+                st.button(
+                    "Delete",
+                    on_click=deleteAssistant,
+                    args=[assistant.id],
+                    key=assistant.id,
+                )
         with col2:
             with st.container(border=True):
                 st.write("**Description**: ", assistant.description)
@@ -201,7 +218,6 @@ for assistant in data:
                     files = [f for f in assistant.tool_resources.files]
                     df = pd.DataFrame(files, columns=["filename", "id"])
                     st.write(df)
-
 
 
 # st.write("**useCounts:**", idUseCounts)
