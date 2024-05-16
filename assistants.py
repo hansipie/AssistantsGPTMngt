@@ -23,8 +23,9 @@ class ToolFiles:
 
 @dataclass
 class ToolResources:
-    vector_ids: List[str]
-    files: List[ToolFiles]
+    resources_type: Tool = None
+    vector_ids: List[str] = None
+    files: List[ToolFiles] = None
 
 
 @dataclass
@@ -111,29 +112,32 @@ def setData(assistants):
 
         tools: List[Tool] = [Tool(t.type) for t in assistant.tools]
 
+        resources: List[ToolResources] = []
         if assistant.tool_resources.code_interpreter:
-            resources: ToolResources = ToolResources(
+            resources_tmp: ToolResources = ToolResources(
                 vector_ids=[],
                 files=[
                     getFileDetails(f)
                     for f in assistant.tool_resources.code_interpreter.file_ids
                 ],
+                resources_type=Tool.CODEINTERPRETER,
             )
-            for f in resources.files:
+            for f in resources_tmp.files:
                 updateIdUseCounts(f.id)
-        elif assistant.tool_resources.file_search:
-            resources = ToolResources(
+            resources.append(resources_tmp)
+        if assistant.tool_resources.file_search:
+            resources_tmp: ToolResources = ToolResources(
                 vector_ids=assistant.tool_resources.file_search.vector_store_ids,
                 files=getFileFromVectorStore(
                     assistant.tool_resources.file_search.vector_store_ids
                 ),
+                resources_type=Tool.FILESEARCH,
             )
-            for f in resources.files:
+            for f in resources_tmp.files:
                 updateIdUseCounts(f.id)
-            for v in resources.vector_ids:
+            for v in resources_tmp.vector_ids:
                 updateIdUseCounts(v)
-        else:
-            resources = ToolResources(vector_ids=[], files=[])
+            resources.append(resources_tmp)
         data.append(
             Assistant(
                 id=assistant.id,
@@ -210,14 +214,18 @@ for assistant in data:
                     for t in assistant.tools:
                         st.write(" - Type: ", t.value)
                 st.write("**Tool Resources**:")
-                with st.container(border=True):
-                    for vstore in assistant.tool_resources.vector_ids:
-                        st.write("Vector store: ID:", vstore)
-
-                    st.write("Files:")
-                    files = [f for f in assistant.tool_resources.files]
-                    df = pd.DataFrame(files, columns=["filename", "id"])
-                    st.write(df)
+                for resource in assistant.tool_resources:
+                    with st.container(border=True):
+                        if resource.resources_type == Tool.CODEINTERPRETER:
+                            st.write("Code Interpreter:")
+                        if resource.resources_type == Tool.FILESEARCH:
+                            st.write("File Search:")
+                            vstores = [v for v in resource.vector_ids]
+                            df = pd.DataFrame(vstores, columns=["vector store id"])
+                            st.write(df)
+                        files = [f for f in resource.files]
+                        df = pd.DataFrame(files, columns=["filename", "id"])
+                        st.write(df)
 
 
 # st.write("**useCounts:**", idUseCounts)
