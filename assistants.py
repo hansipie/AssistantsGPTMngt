@@ -222,14 +222,11 @@ for assistant in data:
                             st.write("File Search:")
                             vstores = [v for v in resource.vector_ids]
                             df = pd.DataFrame(vstores, columns=["vector store id"])
-                            st.write(df)
+                            st.dataframe(df, hide_index=True)
                         files = [f for f in resource.files]
                         df = pd.DataFrame(files, columns=["filename", "id"])
-                        st.write(df)
-
+                        st.dataframe(df, hide_index=True)
 
 # st.write("**useCounts:**", idUseCounts)
-
 # st.write("**Files:**", listFiles())
-
 # st.write("**Vector Stores:**", listVectorStores())
